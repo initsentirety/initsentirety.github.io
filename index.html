@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>In Its Entirety - Unveiling the Entire Story</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #ff3e3e;
+            --dark-bg: #0f0f0f;
+            --dark-surface: #272727;
+            --dark-text: #f1f1f1;
+            --dark-text-secondary: #aaaaaa;
+            --light-bg: #ffffff;
+            --light-surface: #f9f9f9;
+            --light-text: #0f0f0f;
+            --light-text-secondary: #606060;
+            --transition-speed: 0.3s;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden;
+        }
+        
+        body.light-mode {
+            background-color: var(--light-bg);
+            color: var(--light-text);
+        }
+        
+        /* YouTube-like Loader */
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+        
+        body.light-mode .loader-container {
+            background-color: var(--light-bg);
+        }
+        
+        .loader-container.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .youtube-loader {
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+        
+        .youtube-loader:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 8px solid transparent;
+            border-top-color: var(--primary-color);
+            animation: spin 1s linear infinite;
+        }
+        
+        .youtube-loader:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 8px solid transparent;
+            border-top-color: var(--dark-text-secondary);
+            opacity: 0.5;
+            animation: spin 0.5s linear infinite reverse;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            height: 56px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--dark-bg);
+            z-index: 1000;
+            border-bottom: 1px solid #303030;
+            transition: all var(--transition-speed);
+        }
+        
+        body.light-mode header {
+            background-color: var(--light-bg);
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            color: var(--primary-color);
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo i {
+            margin-right: 5px;
+        }
+        
+        .search-container {
+            display: flex;
+            align-items: center;
+            flex: 0 1 728px;
+            margin: 0 40px;
+        }
+        
+        .search-form {
+            display: flex;
+            flex: 1;
+            max-width: 600px;
+        }
+        
+        .search-input {
+            flex: 1;
+            height: 40px;
+            padding: 0 16px;
+            border: 1px solid #303030;
+            border-radius: 20px 0 0 20px;
+            background-color: #121212;
+            color: var(--dark-text);
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 1px var(--primary-color);
+        }
+        
+        body.light-mode .search-input {
+            background-color: var(--light-bg);
+            color: var(--light-text);
+            border: 1px solid #ccc;
+        }
+        
+        .search-button {
+            height: 40px;
+            width: 64px;
+            border: 1px solid #303030;
+            border-left: none;
+            border-radius: 0 20px 20px 0;
+            background-color: #303030;
+            color: var(--dark-text-secondary);
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .search-button:hover {
+            background-color: #404040;
+        }
+        
+        body.light-mode .search-button {
+            background-color: #f8f8f8;
+            border: 1px solid #ccc;
+            color: var(--light-text-secondary);
+        }
+        
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-icon {
+            margin-left: 24px;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--dark-text);
+            position: relative;
+            transition: transform 0.2s, color 0.2s;
+        }
+        
+        .header-icon:hover {
+            transform: scale(1.1);
+            color: var(--primary-color);
+        }
+        
+        body.light-mode .header-icon {
+            color: var(--light-text);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-left: 24px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .user-avatar:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Sidebar Styles */
+        .sidebar {
+            width: 240px;
+            height: calc(100vh - 56px);
+            position: fixed;
+            top: 56px;
+            left: 0;
+            background-color: var(--dark-bg);
+            overflow-y: auto;
+            padding-top: 12px;
+            transition: transform var(--transition-speed);
+            z-index: 999;
+        }
+        
+        body.light-mode .sidebar {
+            background-color: var(--light-bg);
+        }
+        
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 24px;
+            cursor: pointer;
+            color: var(--dark-text);
+            text-decoration: none;
+            transition: background-color 0.2s, padding-left 0.2s;
+            position: relative;
+        }
+        
+        .sidebar-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background-color: var(--primary-color);
+            transform: scaleY(0);
+            transition: transform 0.2s;
+        }
+        
+        .sidebar-item:hover {
+            background-color: #272727;
+            padding-left: 28px;
+        }
+        
+        .sidebar-item:hover::before {
+            transform: scaleY(1);
+        }
+        
+        body.light-mode .sidebar-item {
+            color: var(--light-text);
+        }
+        
+        body.light-mode .sidebar-item:hover {
+            background-color: #f2f2f2;
+        }
+        
+        .sidebar-item.active {
+            background-color: #383838;
+            font-weight: 500;
+        }
+        
+        .sidebar-item.active::before {
+            transform: scaleY(1);
+        }
+        
+        body.light-mode .sidebar-item.active {
+            background-color: #e5e5e5;
+        }
+        
+        .sidebar-item i {
+            margin-right: 24px;
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+        
+        .sidebar-item:hover i {
+            transform: scale(1.1);
+        }
+        
+        .sidebar-divider {
+            height: 1px;
+            background-color: #303030;
+            margin: 12px 0;
+            transition: background-color var(--transition-speed);
+        }
+        
+        body.light-mode .sidebar-divider {
+            background-color: #e5e5e5;
+        }
+        
+        .sidebar-section-title {
+            padding: 8px 24px;
+            font-size: 14px;
+            color: var(--dark-text-secondary);
+            text-transform: uppercase;
+            transition: color var(--transition-speed);
+        }
+        
+        body.light-mode .sidebar-section-title {
+            color: var(--light-text-secondary);
+        }
+        
+        /* Main Content Styles */
+        .main-content {
+            margin-left: 240px;
+            margin-top: 56px;
+            padding: 24px;
+            transition: margin-left var(--transition-speed), opacity 0.5s;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .content-section {
+            margin-bottom: 40px;
+            animation: slideUp 0.5s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 16px;
+            font-weight: 500;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+        
+        .content-section:hover .section-title::after {
+            width: 100%;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .video-card {
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: var(--dark-surface);
+            animation: cardAppear 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        @keyframes cardAppear {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        body.light-mode .video-card {
+            background-color: var(--light-surface);
+        }
+        
+        .thumbnail {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background-color: #272727;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .video-card:hover .thumbnail {
+            transform: scale(1.05);
+        }
+        
+        .thumbnail-content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .video-duration {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 12px;
+            transition: transform 0.2s;
+        }
+        
+        .video-card:hover .video-duration {
+            transform: scale(1.1);
+        }
+        
+        .video-info {
+            display: flex;
+            margin-top: 12px;
+            padding: 0 12px 12px;
+        }
+        
+        .channel-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            margin-right: 12px;
+            flex-shrink: 0;
+            transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .video-card:hover .channel-avatar {
+            transform: scale(1.1);
+        }
+        
+        .video-details {
+            flex: 1;
+        }
+        
+        .video-title {
+            font-weight: 500;
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            transition: color 0.2s;
+        }
+        
+        .video-card:hover .video-title {
+            color: var(--primary-color);
+        }
+        
+        .channel-name, .video-meta {
+            font-size: 14px;
+            color: var(--dark-text-secondary);
+            transition: color var(--transition-speed);
+        }
+        
+        body.light-mode .channel-name, 
+        body.light-mode .video-meta {
+            color: var(--light-text-secondary);
+        }
+        
+        /* Channel Page Styles */
+        .channel-header {
+            position: relative;
+            margin-bottom: 24px;
+            animation: slideUp 0.5s ease-out;
+        }
+        
+        .channel-banner {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460);
+            border-radius: 12px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .channel-header:hover .channel-banner {
+            transform: scale(1.01);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .channel-info {
+            display: flex;
+            align-items: center;
+            padding: 16px 0;
+        }
+        
+        .channel-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            margin-right: 24px;
+            border: 3px solid var(--dark-bg);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        
+        .channel-avatar-large:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 0 3px var(--primary-color);
+        }
+        
+        body.light-mode .channel-avatar-large {
+            border-color: var(--light-bg);
+        }
+        
+        .channel-details {
+            flex: 1;
+        }
+        
+        .channel-name-large {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            transition: color 0.2s;
+        }
+        
+        .channel-name-large:hover {
+            color: var(--primary-color);
+        }
+        
+        .channel-stats {
+            display: flex;
+            color: var(--dark-text-secondary);
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        
+        body.light-mode .channel-stats {
+            color: var(--light-text-secondary);
+        }
+        
+        .channel-stat {
+            margin-right: 16px;
+            transition: color 0.2s;
+        }
+        
+        .channel-stat:hover {
+            color: var(--primary-color);
+        }
+        
+        .channel-description {
+            font-size: 14px;
+            color: var(--dark-text-secondary);
+            max-width: 600px;
+            transition: color var(--transition-speed);
+        }
+        
+        body.light-mode .channel-description {
+            color: var(--light-text-secondary);
+        }
+        
+        .subscribe-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .subscribe-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .subscribe-button:hover::before {
+            left: 100%;
+        }
+        
+        .subscribe-button:hover {
+            background-color: #cc0000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 0, 0, 0.3);
+        }
+        
+        .subscribe-button i {
+            margin-right: 8px;
+            transition: transform 0.2s;
+        }
+        
+        .subscribe-button:hover i {
+            transform: scale(1.1);
+        }
+        
+        .channel-tabs {
+            display: flex;
+            border-bottom: 1px solid #303030;
+            margin-bottom: 24px;
+            animation: slideUp 0.5s ease-out 0.1s both;
+        }
+        
+        body.light-mode .channel-tabs {
+            border-bottom-color: #e5e5e5;
+        }
+        
+        .channel-tab {
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--dark-text-secondary);
+            position: relative;
+            transition: color 0.2s;
+        }
+        
+        body.light-mode .channel-tab {
+            color: var(--light-text-secondary);
+        }
+        
+        .channel-tab:hover {
+            color: var(--dark-text);
+        }
+        
+        body.light-mode .channel-tab:hover {
+            color: var(--light-text);
+        }
+        
+        .channel-tab.active {
+            color: var(--dark-text);
+            font-weight: 500;
+        }
+        
+        .channel-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+            animation: tabSlide 0.3s ease-out;
+        }
+        
+        @keyframes tabSlide {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        body.light-mode .channel-tab.active {
+            color: var(--light-text);
+        }
+        
+        /* Marketplace Styles */
+        .marketplace-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .product-card {
+            background-color: var(--dark-surface);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: cardAppear 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        body.light-mode .product-card {
+            background-color: var(--light-surface);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .product-info {
+            padding: 16px;
+        }
+        
+        .product-title {
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        .product-description {
+            font-size: 14px;
+            color: var(--dark-text-secondary);
+            margin-bottom: 12px;
+        }
+        
+        body.light-mode .product-description {
+            color: var(--light-text-secondary);
+        }
+        
+        .product-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+        
+        .buy-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+        
+        .buy-button:hover {
+            background-color: #cc0000;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s;
+        }
+        
+        .modal-content {
+            background-color: var(--dark-bg);
+            width: 90%;
+            max-width: 1000px;
+            border-radius: 12px;
+            overflow: hidden;
+            transform: scale(0.9);
+            animation: modalAppear 0.3s forwards;
+        }
+        
+        @keyframes modalAppear {
+            to { transform: scale(1); }
+        }
+        
+        body.light-mode .modal-content {
+            background-color: var(--light-bg);
+        }
+        
+        .modal-header {
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #303030;
+        }
+        
+        body.light-mode .modal-header {
+            border-bottom-color: #e5e5e5;
+        }
+        
+        .modal-title {
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--dark-text);
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.2s, color 0.2s;
+        }
+        
+        .close-modal:hover {
+            transform: scale(1.1);
+            color: var(--primary-color);
+        }
+        
+        body.light-mode .close-modal {
+            color: var(--light-text);
+        }
+        
+        .modal-body {
+            padding: 16px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        
+        /* Social Links Styles */
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            padding: 8px 16px;
+            background-color: var(--dark-surface);
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--dark-text);
+            transition: all 0.2s;
+        }
+        
+        body.light-mode .social-link {
+            background-color: var(--light-surface);
+            color: var(--light-text);
+        }
+        
+        .social-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: var(--primary-color);
+        }
+        
+        .social-link i {
+            margin-right: 8px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .video-grid, .marketplace-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .search-container {
+                margin: 0 16px;
+            }
+            
+            .video-grid, .marketplace-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .header-icon .icon-text {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .search-container {
+                flex: 0 1 auto;
+                margin: 0 8px;
+            }
+            
+            .video-grid, .marketplace-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .channel-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .channel-avatar-large {
+                margin-right: 0;
+                margin-bottom: 16px;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- YouTube-like Loader -->
+    <div class="loader-container" id="loader">
+        <div class="youtube-loader"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <div class="menu-icon header-icon" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <a href="index.html" class="logo">
+                <i class="fab fa-youtube"></i> In Its Entirety
+            </a>
+        </div>
+        
+        <div class="search-container">
+            <form class="search-form">
+                <input type="text" class="search-input" placeholder="Search for topics: Geopolitics, Tech, History...">
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+        
+        <div class="header-icons">
+            <div class="header-icon theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </div>
+            <div class="header-icon">
+                <i class="fas fa-video"></i>
+            </div>
+            <div class="header-icon">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </div>
+            <div class="user-avatar">IIE</div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <a href="#" class="sidebar-item active" data-page="home">
+            <i class="fas fa-home"></i> Home
+        </a>
+        <a href="#" class="sidebar-item" data-page="channel">
+            <i class="fas fa-user"></i> My Channel
+        </a>
+        <a href="#" class="sidebar-item" data-page="marketplace">
+            <i class="fas fa-store"></i> Marketplace
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="fas fa-fire"></i> Trending
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="fas fa-folder"></i> Library
+        </a>
+        
+        <div class="sidebar-divider"></div>
+        
+        <div class="sidebar-section-title">Content Series</div>
+        <a href="#" class="sidebar-item">
+            <i class="fas fa-globe"></i> Power Lines (Geopolitics)
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="fas fa-microchip"></i> Tech Frontiers
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="fas fa-clock"></i> Timelines (History)
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="fas fa-leaf"></i> Wild Horizons (Nature)
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="fas fa-chart-line"></i> Wealth Contours (Economics)
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="fas fa-crystal-ball"></i> Foresight (Future)
+        </a>
+        
+        <div class="sidebar-divider"></div>
+        
+        <div class="sidebar-section-title">Connect</div>
+        <a href="#" class="sidebar-item">
+            <i class="fab fa-youtube"></i> YouTube
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="fab fa-instagram"></i> Instagram
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="fab fa-twitter"></i> Twitter
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="fab fa-discord"></i> Discord
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="fas fa-envelope"></i> Contact
+        </a>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Home Page -->
+        <div id="homePage" class="page-content">
+            <div class="content-section">
+                <h2 class="section-title">Featured Series</h2>
+                <div class="video-grid">
+                    <!-- Power Lines -->
+                    <div class="video-card" data-video="1">
+                        <div class="thumbnail">
+                            <div class="thumbnail-content" style="background: linear-gradient(45deg, #c0392b, #e74c3c);">
+                                Power Lines
+                            </div>
+                            <span class="video-duration">22:45</span>
+                        </div>
+                        <div class="video-info">
+                            <div class="channel-avatar">IIE</div>
+                            <div class="video-details">
+                                <h3 class="video-title">The New Silk Road: A 21st-Century Power Map</h3>
+                                <p class="channel-name">In Its Entirety</p>
+                                <p class="video-meta">125K views • 2 months ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tech Frontiers -->
+                    <div class="video-card" data-video="2">
+                        <div class="thumbnail">
+                            <div class="thumbnail-content" style="background: linear-gradient(45deg, #2980b9, #3498db);">
+                                Tech Frontiers
+                            </div>
+                            <span class="video-duration">18:30</span>
+                        </div>
+                        <div class="video-info">
+                            <div class="channel-avatar">IIE</div>
+                            <div class="video-details">
+                                <h3 class="video-title">AI and the Future of Work</h3>
+                                <p class="channel-name">In Its Entirety</p>
+                                <p class="video-meta">89K views • 3 months ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Foresight -->
+                    <div class="video-card" data-video="3">
+                        <div class="thumbnail">
+                            <div class="thumbnail-content" style="background: linear-gradient(45deg, #9b59b6, #8e44ad);">
+                                Foresight
+                            </div>
+                            <span class="video-duration">25:12</span>
+                        </div>
+                        <div class="video-info">
+                            <div class="channel-avatar">IIE</div>
+                            <div class="video-details">
+                                <h3 class="video-title">The World in 2050: 5 Radical Projections</h3>
+                                <p class="channel-name">In Its Entirety</p>
+                                <p class="video-meta">210K views • 5 months ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Timelines -->
+                    <div class="video-card" data-video="4">
+                        <div class="thumbnail">
+                            <div class="thumbnail-content" style="background: linear-gradient(45deg, #d35400, #e67e22);">
+                                Timelines
+                            </div>
+                            <span class="video-duration">19:05</span>
+                        </div>
+                        <div class="video-info">
+                            <div class="channel-avatar">IIE</div>
+                            <div class="video-details">
+                                <h3 class="video-title">How the Microchip Changed Everything</h3>
+                                <p class="channel-name">In Its Entirety</p>
+                                <p class="video-meta">75K views • 1 month ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wild Horizons -->
+                    <div class="video-card" data-video="5">
+                        <div class="thumbnail">
+                            <div class="thumbnail-content" style="background: linear-gradient(45deg, #27ae60, #2ecc71);">
+                                Wild Horizons
+                            </div>
+                            <span class="video-duration">16:45</span>
+                        </div>
+                        <div class="video-info">
+                            <div class="channel-avatar">IIE</div>
+                            <div class="video-details">
+                                <h3 class="video-title">The Secret World of Deep Ocean Ecosystems</h3>
+                                <p class="channel-name">In Its Entirety</p>
+                                <p class="video-meta">95K views • 2 weeks ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wealth Contours -->
+                    <div class="video-card" data-video="6">
+                        <div class="thumbnail">
+                            <div class="thumbnail-content" style="background: linear-gradient(45deg, #f39c12, #f1c40f);">
+                                Wealth Contours
+                            </div>
+                            <span class="video-duration">21:30</span>
+                        </div>
+                        <div class="video-info">
+                            <div class="channel-avatar">IIE</div>
+                            <div class="video-details">
+                                <h3 class="video-title">The Hidden Economics of Everyday Decisions</h3>
+                                <p class="channel-name">In Its Entirety</p>
+                                <p class="video-meta">63K views • 1 week ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">Recently Added</h2>
+                <div class="video-grid">
+                    <!-- Boundaries -->
+                    <div class="video-card" data-video="7">
+                        <div class="thumbnail">
+                            <div class="thumbnail-content" style="background: linear-gradient(45deg, #2c3e50, #34495e);">
+                                Boundaries
+                            </div>
+                            <span class="video-duration">28:15</span>
+                        </div>
+                        <div class="video-info">
+                            <div class="channel-avatar">IIE</div>
+                            <div class="video-details">
+                                <h3 class="video-title">Mars Colonization: The Next Frontier</h3>
+                                <p class="channel-name">In Its Entirety</p>
+                                <p class="video-meta">42K views • 3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Source Code -->
+                    <div class="video-card" data-video="8">
+                        <div class="thumbnail">
+                            <div class="thumbnail-content" style="background: linear-gradient(45deg, #16a085, #1abc9c);">
+                                Source Code
+                            </div>
+                            <span class="video-duration">17:50</span>
+                        </div>
+                        <div class="video-info">
+                            <div class="channel-avatar">IIE</div>
+                            <div class="video-details">
+                                <h3 class="video-title">Quantum Computing: Breaking the Binary</h3>
+                                <p class="channel-name">In Its Entirety</p>
+                                <p class="video-meta">58K views • 5 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Channel Page -->
+        <div id="channelPage" class="page-content" style="display: none;">
+            <div class="channel-header">
+                <div class="channel-banner">In Its Entirety - Unveiling the Entire Story 🌍✨</div>
+                <div class="channel-info">
+                    <div class="channel-avatar-large">IIE</div>
+                    <div class="channel-details">
+                        <h1 class="channel-name-large">In Its Entirety</h1>
+                        <div class="channel-stats">
+                            <span class="channel-stat">@InItsEntiretyYT</span>
+                            <span class="channel-stat">125K subscribers</span>
+                            <span class="channel-stat">87 videos</span>
+                        </div>
+                        <p class="channel-description">
+                            Welcome to In Its Entirety—your destination for comprehensive explorations of the intricate systems that shape our world. 
+                            We connect the dots across geopolitics, technology, history, and science to provide a holistic understanding of the forces driving our present and future.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-youtube"></i> YouTube</a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i> Twitter</a>
+                            <a href="#" class="social-link"><i class="fab fa-discord"></i> Discord</a>
+                            <a href="#" class="social-link"><i class="fab fa-facebook"></i> Facebook</a>
+                            <a href="#" class="social-link"><i class="fab fa-reddit"></i> Reddit</a>
+                        </div>
+                    </div>
+                    <button class="subscribe-button">
+                        <i class="fas fa-bell"></i> Subscribe
+                    </button>
+                </div>
+            </div>
+            
+            <div class="channel-tabs">
+                <div class="channel-tab active">Videos</div>
+                <div class="channel-tab">Playlists</div>
+                <div class="channel-tab">Community</div>
+                <div class="channel-tab">About</div>
+            </div>
+            
+            <div class="video-grid">
+                <!-- Videos would be displayed here -->
+            </div>
+        </div>
+
+        <!-- Marketplace Page -->
+        <div id="marketplacePage" class="page-content" style="display: none;">
+            <div class="content-section">
+                <h2 class="section-title">Channel Merchandise</h2>
+                <p style="margin-bottom: 20px; color: var(--dark-text-secondary);">Support the channel and represent your favorite content series with our exclusive merchandise.</p>
+                
+                <div class="marketplace-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <div class="product-image" style="background: linear-gradient(45deg, #c0392b, #e74c3c);">
+                            Power Lines Hoodie
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Power Lines Hoodie</h3>
+                            <p class="product-description">Premium quality hoodie featuring the Power Lines series logo.</p>
+                            <div class="product-price">$39.99</div>
+                            <button class="buy-button">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <div class="product-image" style="background: linear-gradient(45deg, #2980b9, #3498db);">
+                            Tech Frontiers Mug
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Tech Frontiers Mug</h3>
+                            <p class="product-description">Ceramic mug with the Tech Frontiers design. Holds 12oz.</p>
+                            <div class="product-price">$14.99</div>
+                            <button class="buy-button">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <div class="product-image" style="background: linear-gradient(45deg, #9b59b6, #8e44ad);">
+                            Foresight Poster
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Foresight Poster</h3>
+                            <p class="product-description">High-quality print featuring futuristic visualizations.</p>
+                            <div class="product-price">$19.99</div>
+                            <button class="buy-button">Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <div class="product-image" style="background: linear-gradient(45deg, #27ae60, #2ecc71);">
+                            Channel Sticker Pack
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Channel Sticker Pack</h3>
+                            <p class="product-description">Set of 10 waterproof stickers featuring all series logos.</p>
+                            <div class="product-price">$9.99</div>
+                            <button class="buy-button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h2 class="section-title">Digital Products</h2>
+                <div class="marketplace-grid">
+                    <!-- Digital Product 1 -->
+                    <div class="product-card">
+                        <div class="product-image" style="background: linear-gradient(45deg, #f39c12, #f1c40f);">
+                            Research Papers
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">In-Depth Research Papers</h3>
+                            <p class="product-description">Extended written versions of our most popular episodes.</p>
+                            <div class="product-price">$4.99 each</div>
+                            <button class="buy-button">View Collection</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Digital Product 2 -->
+                    <div class="product-card">
+                        <div class="product-image" style="background: linear-gradient(45deg, #d35400, #e67e22);">
+                            Exclusive Content
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Channel Membership</h3>
+                            <p class="product-description">Access exclusive content, behind-the-scenes, and more.</p>
+                            <div class="product-price">$4.99/month</div>
+                            <button class="buy-button">Join Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Video Detail Modal -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Video Details</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="modalContent">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const videoCards = document.querySelectorAll('.video-card');
+        const videoModal = document.getElementById('videoModal');
+        const closeModal = document.querySelector('.close-modal');
+        const modalContent = document.getElementById('modalContent');
+        const homePage = document.getElementById('homePage');
+        const channelPage = document.getElementById('channelPage');
+        const marketplacePage = document.getElementById('marketplacePage');
+        const mainContent = document.getElementById('mainContent');
+        const loader = document.getElementById('loader');
+        const sidebarItems = document.querySelectorAll('.sidebar-item[data-page]');
+        
+        // Video data
+        const videos = {
+            1: {
+                title: "The New Silk Road: A 21st-Century Power Map",
+                series: "Power Lines (Geopolitics)",
+                description: "An in-depth analysis of China's Belt and Road Initiative and its implications for global power dynamics in the 21st century.",
+                topics: ["Geopolitics", "International Relations", "Economics", "Infrastructure"],
+                duration: "22:45",
+                views: "125K",
+                date: "2 months ago",
+                details: "This episode explores how the New Silk Road is reshaping trade routes, creating new alliances, and challenging existing power structures. We examine the strategic motivations behind this massive infrastructure project and its potential to redefine global economics and politics for decades to come."
+            },
+            2: {
+                title: "AI and the Future of Work",
+                series: "Tech Frontiers",
+                description: "Exploring how artificial intelligence is transforming industries and what it means for the future of employment.",
+                topics: ["Artificial Intelligence", "Technology", "Future of Work", "Automation"],
+                duration: "18:30",
+                views: "89K",
+                date: "3 months ago",
+                details: "In this episode, we dive into the rapidly evolving world of AI and its impact on the workforce. From automation threatening traditional jobs to the creation of entirely new industries, we explore both the challenges and opportunities presented by this technological revolution."
+            },
+            3: {
+                title: "The World in 2050: 5 Radical Projections",
+                series: "Foresight",
+                description: "Based on current trends, we project five possible scenarios for what our world might look like in 2050.",
+                topics: ["Future Trends", "Predictions", "Technology", "Society"],
+                duration: "25:12",
+                views: "210K",
+                date: "5 months ago",
+                details: "Using data analysis and trend extrapolation, we've developed five distinct scenarios for the world in 2050. From climate change impacts to technological singularities, this episode explores the most likely futures humanity might face and what we can do to shape them."
+            },
+            4: {
+                title: "How the Microchip Changed Everything",
+                series: "Timelines",
+                description: "Tracing the history of the microchip and its revolutionary impact on modern society.",
+                topics: ["History", "Technology", "Innovation", "Computing"],
+                duration: "19:05",
+                views: "75K",
+                date: "1 month ago",
+                details: "This historical deep-dive follows the development of the microchip from its invention in the 1950s to its pervasive presence in today's world. We explore how this tiny piece of silicon transformed communication, commerce, and culture in ways its inventors could never have imagined."
+            },
+            5: {
+                title: "The Secret World of Deep Ocean Ecosystems",
+                series: "Wild Horizons",
+                description: "Exploring the mysterious and largely unknown ecosystems thriving in the deepest parts of our oceans.",
+                topics: ["Nature", "Marine Biology", "Ecosystems", "Conservation"],
+                duration: "16:45",
+                views: "95K",
+                date: "2 weeks ago",
+                details: "Journey with us to the deepest parts of the ocean, where bizarre creatures and unique ecosystems thrive in complete darkness. We examine how these environments function, their importance to global ecological balance, and the threats they face from human activity."
+            },
+            6: {
+                title: "The Hidden Economics of Everyday Decisions",
+                series: "Wealth Contours",
+                description: "Uncovering the economic principles that influence our daily choices and behaviors.",
+                topics: ["Economics", "Behavioral Economics", "Decision Making", "Psychology"],
+                duration: "21:30",
+                views: "63K",
+                date: "1 week ago",
+                details: "This episode explores the hidden economic forces that shape our everyday decisions. From the psychology of pricing to the impact of scarcity on our choices, we reveal how understanding these principles can lead to better financial decisions and a clearer understanding of market dynamics."
+            },
+            7: {
+                title: "Mars Colonization: The Next Frontier",
+                series: "Boundaries",
+                description: "Examining the challenges and possibilities of establishing a human presence on Mars.",
+                topics: ["Space", "Colonization", "Technology", "Future"],
+                duration: "28:15",
+                views: "42K",
+                date: "3 days ago",
+                details: "As humanity sets its sights on Mars, we explore what it would take to establish a permanent presence on the Red Planet. From technological hurdles to psychological challenges, this episode examines the feasibility of Mars colonization and what it would mean for the future of our species."
+            },
+            8: {
+                title: "Quantum Computing: Breaking the Binary",
+                series: "Source Code",
+                description: "Demystifying quantum computing and its potential to revolutionize technology as we know it.",
+                topics: ["Quantum Computing", "Physics", "Technology", "Future"],
+                duration: "17:50",
+                views: "58K",
+                date: "5 days ago",
+                details: "Quantum computing represents a fundamental shift in how we process information. In this episode, we break down the complex principles behind quantum mechanics and explore how quantum computers could solve problems that are currently impossible for classical computers, with implications for cryptography, medicine, and artificial intelligence."
+            }
+        };
+
+        // Show loader on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                mainContent.style.opacity = '1';
+            }, 1500);
+        });
+
+        // Toggle sidebar on mobile
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && sidebar.classList.contains('open') && 
+                !sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Toggle dark/light mode
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const icon = themeToggle.querySelector('i');
+            if (body.classList.contains('light-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+            
+            // Save theme preference
+            localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
+        });
+
+        // Load saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            body.classList.add('light-mode');
+            themeToggle.querySelector('i').classList.remove('fa-moon');
+            themeToggle.querySelector('i').classList.add('fa-sun');
+        }
+
+        // Show video details in modal
+        videoCards.forEach((card, index) => {
+            // Add staggered animation delay
+            card.style.animationDelay = `${index * 0.1}s`;
+            
+            card.addEventListener('click', () => {
+                const videoId = card.getAttribute('data-video');
+                const video = videos[videoId];
+                
+                if (video) {
+                    modalContent.innerHTML = `
+                        <h2>${video.title}</h2>
+                        <p><strong>Series:</strong> ${video.series}</p>
+                        <p><strong>Description:</strong> ${video.description}</p>
+                        <p><strong>Topics:</strong> ${video.topics.join(', ')}</p>
+                        <p><strong>Duration:</strong> ${video.duration} | <strong>Views:</strong> ${video.views} | <strong>Date:</strong> ${video.date}</p>
+                        <div style="margin-top: 20px;">
+                            <h3>Episode Details</h3>
+                            <p>${video.details}</p>
+                        </div>
+                    `;
+                    videoModal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            videoModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target === videoModal) {
+                videoModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).style.display = 'block';
+            
+            // Update active sidebar item
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Find and activate the corresponding sidebar item
+            document.querySelectorAll('.sidebar-item[data-page]').forEach(item => {
+                if (item.getAttribute('data-page') === pageId.replace('Page', '').toLowerCase()) {
+                    item.classList.add('active');
+                }
+            });
+            
+            // Special case for home page
+            if (pageId === 'homePage') {
+                document.querySelector('.sidebar-item[data-page="home"]').classList.add('active');
+            }
+        }
+
+        // Set up sidebar navigation
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = item.getAttribute('data-page') + 'Page';
+                showPage(page);
+                
+                // Close sidebar on mobile after selection
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('open');
+                }
+            });
+        });
+
+        // Initialize with home page
+        showPage('homePage');
+
+        // Search functionality
+        const searchForm = document.querySelector('.search-form');
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const searchTerm = document.querySelector('.search-input').value.toLowerCase();
+            
+            if (searchTerm) {
+                let found = false;
+                videoCards.forEach(card => {
+                    const title = card.querySelector('.video-title').textContent.toLowerCase();
+                    if (title.includes(searchTerm)) {
+                        card.style.display = 'block';
+                        found = true;
+                        card.style.animation = 'cardAppear 0.5s ease-out';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                if (!found) {
+                    const notification = document.createElement('div');
+                    notification.style.cssText = `
+                        position: fixed;
+                        bottom: 20px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background-color: var(--dark-surface);
+                        color: var(--dark-text);
+                        padding: 12px 24px;
+                        border-radius: 4px;
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                        z-index: 1000;
+                        animation: slideUp 0.3s ease-out;
+                    `;
+                    notification.textContent = 'No videos found matching your search.';
+                    document.body.appendChild(notification);
+                    
+                    setTimeout(() => {
+                        notification.style.animation = 'fadeOut 0.3s ease-out forwards';
+                        setTimeout(() => {
+                            document.body.removeChild(notification);
+                        }, 300);
+                    }, 3000);
+                    
+                    setTimeout(() => {
+                        videoCards.forEach(card => {
+                            card.style.display = 'block';
+                            card.style.animation = 'cardAppear 0.5s ease-out';
+                        });
+                    }, 3000);
+                }
+            }
+        });
+
+        // Reset search when input is cleared
+        document.querySelector('.search-input').addEventListener('input', (e) => {
+            if (e.target.value === '') {
+                videoCards.forEach(card => {
+                    card.style.display = 'block';
+                    card.style.animation = 'cardAppear 0.5s ease-out';
+                });
+            }
+        });
+
+        // Add fadeOut animation for notifications
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                from { opacity: 1; transform: translateX(-50%) translateY(0); }
+                to { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
