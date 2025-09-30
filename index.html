@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>In Its Entirety - Unveiling the Entire Story</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -509,7 +510,8 @@
             color: white;
             font-weight: bold;
         }
-        
+
+     
         .video-card:hover .channel-avatar {
             transform: scale(1.1);
         }
@@ -577,8 +579,12 @@
         }
         
         .channel-avatar-large {
-            width: 80px;
-            height: 80px;
+            width: 210px;
+            height: 210px;
+            /* width: 100%;
+            height: 100%;
+            max-width: 200px;
+            max-height: 200px; */
             border-radius: 50%;
             background: linear-gradient(45deg, #3498db, #2ecc71);
             margin-right: 24px;
@@ -589,7 +595,7 @@
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 24px;
+            font-size: 36px;
         }
         
         .channel-avatar-large:hover {
@@ -608,6 +614,7 @@
         .channel-name-large {
             font-size: 24px;
             font-weight: 500;
+            margin-top: 20px;
             margin-bottom: 4px;
             transition: color 0.2s;
         }
@@ -637,12 +644,20 @@
         }
         
         .channel-description {
-            font-size: 14px;
+            font-size: 16px;
             color: var(--dark-text-secondary);
-            max-width: 600px;
+            max-width: 90%;
             transition: color var(--transition-speed);
+            margin-bottom: 0px; /* Added space below description */
         }
         
+        .description-social-divider {
+            height: 40px; /* Adjust this value to control the space */
+            width: 100%;
+            opacity: 0; /* Makes it invisible */
+            pointer-events: none; /* Prevents it from interfering with clicks */
+        }
+
         body.light-mode .channel-description {
             color: var(--light-text-secondary);
         }
@@ -651,8 +666,8 @@
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 10px 16px;
-            border-radius: 20px;
+            padding: 16px 30px;
+            border-radius: 25px;
             font-weight: 500;
             cursor: pointer;
             display: flex;
@@ -660,6 +675,8 @@
             transition: all 0.2s;
             position: relative;
             overflow: hidden;
+            font-size: 16px; /* Larger font */
+            height: fit-content;
         }
         
         .subscribe-button::before {
@@ -905,7 +922,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-top: 20px;
+            margin-top: 0px;
         }
         
         .social-link {
@@ -924,12 +941,34 @@
             color: var(--light-text);
         }
         
-        .social-link:hover {
+        /* .social-link:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             color: var(--primary-color);
-        }
+        } */
+        .social-link.youtube:hover { color: #FF0000 !important; }
+        .social-link.instagram:hover { color: #E4405F !important; }
+        .social-link.tiktok:hover { color: #000000 !important; }
+        .social-link.facebook:hover { color: #1877F2 !important; }
+        .social-link.x:hover { color: #000000 !important; }
+        .social-link.snapchat:hover { color: #FFFC00 !important; }
+        .social-link.reddit:hover { color: #FF4500 !important; }
+        .social-link.discord:hover { color: #5865F2 !important; }
+        .social-link.twitch:hover { color: #9146FF !important; }
+        .social-link.linkedin:hover { color: #0A66C2 !important; }
+        .social-link.medium:hover { color: #000000 !important; }
+        .social-link.github:hover { color: #181717 !important; }
+        .social-link.google:hover { color: #4285F4 !important; }
+        .social-link.patreon:hover { color: #FF424D !important; }
+        .social-link.kofi:hover { color: #29ABE0 !important; }
+        .social-link.gumroad:hover { color: #36A9AE !important; }
+        .social-link.pinterest:hover { color: #BD081C !important; }
         
+        /* Ensure text remains readable on dark backgrounds */
+        .social-link:hover {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
         .social-link i {
             margin-right: 8px;
         }
@@ -1046,52 +1085,67 @@
         <a href="#" class="sidebar-item" data-page="marketplace">
             <i class="fas fa-store"></i> Marketplace
         </a>
-        <a href="#" class="sidebar-item">
+        <!-- <a href="#" class="sidebar-item">
             <i class="fas fa-fire"></i> Trending
-        </a>
-        <a href="#" class="sidebar-item">
-            <i class="fas fa-folder"></i> Library
-        </a>
-        
+        </a> -->
+                
         <div class="sidebar-divider"></div>
         
         <div class="sidebar-section-title">Content Series</div>
         <a href="#" class="sidebar-item">
-            <i class="fas fa-globe"></i> Power Lines (Geopolitics)
+            <i class="fas fa-globe"></i> Power Lines
         </a>
         <a href="#" class="sidebar-item">
             <i class="fas fa-microchip"></i> Tech Frontiers
         </a>
         <a href="#" class="sidebar-item">
-            <i class="fas fa-clock"></i> Timelines (History)
+            <i class="fas fa-clock"></i> Timelines
         </a>
         <a href="#" class="sidebar-item">
-            <i class="fas fa-leaf"></i> Wild Horizons (Nature)
+            <i class="fas fa-leaf"></i> Wild Horizons
         </a>
         <a href="#" class="sidebar-item">
-            <i class="fas fa-chart-line"></i> Wealth Contours (Economics)
+            <i class="fas fa-chart-line"></i> Wealth Contours
         </a>
         <a href="#" class="sidebar-item">
-            <i class="fas fa-crystal-ball"></i> Foresight (Future)
+            <i class="fas fa-eye"></i> Foresight
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="fas fa-briefcase"></i> Supply & Demand
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="fas fa-trophy"></i> Finish Line
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="fas fa-rocket"></i> Boundaries
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="fas fa-flask"></i> Source Code
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="fas fa-users"></i> Social Construct
         </a>
         
         <div class="sidebar-divider"></div>
         
         <div class="sidebar-section-title">Connect</div>
-        <a href="#" class="sidebar-item">
+        <!-- <a href="#" class="sidebar-item">
             <i class="fab fa-youtube"></i> YouTube
-        </a>
+        </a> -->
         <a href="#" class="sidebar-item">
             <i class="fab fa-instagram"></i> Instagram
         </a>
         <a href="#" class="sidebar-item">
-            <i class="fab fa-twitter"></i> Twitter
+            <i class="fa-brands fa-x-twitter"></i> X
+        </a>
+        <a href="#" class="sidebar-item">
+            <i class="fab fa-reddit"></i> Reddit
         </a>
         <a href="#" class="sidebar-item">
             <i class="fab fa-discord"></i> Discord
         </a>
         <a href="#" class="sidebar-item">
-            <i class="fas fa-envelope"></i> Contact
+            <i class="fas fa-envelope"></i> Mail
         </a>
     </aside>
 
@@ -1271,13 +1325,32 @@
                             Welcome to In Its Entirety—your destination for comprehensive explorations of the intricate systems that shape our world. 
                             We connect the dots across geopolitics, technology, history, and science to provide a holistic understanding of the forces driving our present and future.
                         </p>
+                        <div class="description-social-divider"></div>
                         <div class="social-links">
-                            <a href="#" class="social-link"><i class="fab fa-youtube"></i> YouTube</a>
-                            <a href="#" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>
-                            <a href="#" class="social-link"><i class="fab fa-twitter"></i> Twitter</a>
-                            <a href="#" class="social-link"><i class="fab fa-discord"></i> Discord</a>
-                            <a href="#" class="social-link"><i class="fab fa-facebook"></i> Facebook</a>
-                            <a href="#" class="social-link"><i class="fab fa-reddit"></i> Reddit</a>
+                            <!-- Mainstream Social Media -->
+                            <a href="#" class="social-link youtube"><i class="fab fa-youtube"></i> YouTube</a>
+                            <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="#" class="social-link tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
+                            <a href="#" class="social-link facebook"><i class="fab fa-facebook"></i> Facebook</a>
+                            <a href="#" class="social-link x"><i class="fa-brands fa-x-twitter"></i> X</a>
+                            <a href="#" class="social-link snapchat"><i class="fab fa-snapchat"></i> Snapchat</a>
+
+                            <!-- Community Platforms -->
+                            <a href="#" class="social-link reddit"><i class="fab fa-reddit"></i> Reddit</a>
+                            <a href="#" class="social-link discord"><i class="fab fa-discord"></i> Discord</a>
+                            <a href="#" class="social-link twitch"><i class="fab fa-twitch"></i> Twitch</a>
+                            
+                            <!-- Professional/Official Platforms -->
+                            <a href="#" class="social-link linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                            <a href="#" class="social-link medium"><i class="fab fa-medium"></i> Medium</a>
+                            <a href="#" class="social-link github"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="#" class="social-link google"><i class="fab fa-google"></i> Google</a>
+    
+                            <!-- Marketplaces & Support -->
+                            <a href="#" class="social-link patreon"><i class="fab fa-patreon"></i> Patreon</a>
+                            <a href="#" class="social-link kofi"><i class="fa-solid fa-mug-saucer"></i> Ko-Fi</a>
+                            <a href="#" class="social-link gumroad"><i class="fas fa-store"></i> Gumroad</a>
+                            <a href="#" class="social-link pinterest"><i class="fab fa-pinterest"></i> Pinterest</a>
                         </div>
                     </div>
                     <button class="subscribe-button">
@@ -1714,6 +1787,156 @@
             }
         `;
         document.head.appendChild(style);
+
+        // Channel Tab Navigation
+function setupChannelTabs() {
+    const channelTabs = document.querySelectorAll('.channel-tab');
+    const channelPage = document.getElementById('channelPage');
+    
+    channelTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active class from all tabs
+            channelTabs.forEach(t => t.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            tab.classList.add('active');
+            
+            // Get the tab name
+            const tabName = tab.textContent.trim();
+            
+            // Update content based on selected tab
+            updateChannelTabContent(tabName);
+        });
+    });
+}
+
+// Function to update content based on selected tab
+function updateChannelTabContent(tabName) {
+    const videoGrid = document.querySelector('#channelPage .video-grid');
+    
+    // Clear existing content
+    videoGrid.innerHTML = '';
+    
+    switch(tabName) {
+        case 'Videos':
+            videoGrid.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--dark-text-secondary);">
+                    <i class="fas fa-video" style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;"></i>
+                    <h3>Channel Videos</h3>
+                    <p>All videos from In Its Entirety will appear here</p>
+                </div>
+            `;
+            break;
+            
+        case 'Playlists':
+            videoGrid.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--dark-text-secondary);">
+                    <i class="fas fa-list" style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;"></i>
+                    <h3>Playlists</h3>
+                    <p>Organized collections of videos by series and topics</p>
+                </div>
+            `;
+            break;
+            
+        case 'Community':
+            videoGrid.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--dark-text-secondary);">
+                    <i class="fas fa-users" style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;"></i>
+                    <h3>Community Posts</h3>
+                    <p>Updates, polls, and community interactions</p>
+                </div>
+            `;
+            break;
+            
+        case 'About':
+            videoGrid.innerHTML = `
+                <div style="grid-column: 1 / -1; max-width: 800px; margin: 0 auto; padding: 40px; color: var(--dark-text);">
+                    <div style="background: var(--dark-surface); padding: 30px; border-radius: 12px; margin-bottom: 20px;">
+                        <h3 style="margin-bottom: 15px; color: var(--primary-color);">Channel Details</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                            <div>
+                                <strong>Joined</strong><br>
+                                January 2023
+                            </div>
+                            <div>
+                                <strong>Total Views</strong><br>
+                                5.2M views
+                            </div>
+                            <div>
+                                <strong>Location</strong><br>
+                                Global
+                            </div>
+                            <div>
+                                <strong>Links</strong><br>
+                                ${document.querySelector('.social-links').children.length} social platforms
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: var(--dark-surface); padding: 30px; border-radius: 12px;">
+                        <h3 style="margin-bottom: 15px; color: var(--primary-color);">About In Its Entirety</h3>
+                        <p style="line-height: 1.6; margin-bottom: 20px;">
+                            In Its Entirety is dedicated to providing comprehensive, well-researched content that explores 
+                            the complex systems shaping our world. Our mission is to connect disparate fields of knowledge 
+                            to reveal the bigger picture.
+                        </p>
+                        <h4 style="margin-bottom: 10px;">Content Focus Areas:</h4>
+                        <ul style="line-height: 1.6; padding-left: 20px;">
+                            <li>Geopolitics & International Relations</li>
+                            <li>Technology & Innovation</li>
+                            <li>Historical Analysis</li>
+                            <li>Scientific Discoveries</li>
+                            <li>Economic Trends</li>
+                            <li>Future Projections</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+            break;
+    }
+    
+    // Add animation to new content
+    videoGrid.style.animation = 'none';
+    setTimeout(() => {
+        videoGrid.style.animation = 'fadeIn 0.5s forwards';
+    }, 10);
+}
+
+// Also update your existing page navigation function to initialize tabs when channel page is shown
+function showPage(pageId) {
+    // Hide all pages
+    document.querySelectorAll('.page-content').forEach(page => {
+        page.style.display = 'none';
+    });
+    
+    // Show selected page
+    document.getElementById(pageId).style.display = 'block';
+    
+    // Update active sidebar item
+    document.querySelectorAll('.sidebar-item').forEach(item => {
+        item.classList.remove('active');
+    });
+    
+    // Find and activate the corresponding sidebar item
+    document.querySelectorAll('.sidebar-item[data-page]').forEach(item => {
+        if (item.getAttribute('data-page') === pageId.replace('Page', '').toLowerCase()) {
+            item.classList.add('active');
+        }
+    });
+    
+    // Special case for home page
+    if (pageId === 'homePage') {
+        document.querySelector('.sidebar-item[data-page="home"]').classList.add('active');
+    }
+    
+    // Initialize channel tabs if we're showing the channel page
+    if (pageId === 'channelPage') {
+        setupChannelTabs();
+        // Initialize with Videos tab content
+        updateChannelTabContent('Videos');
+    }
+}
+
     </script>
 </body>
 </html>
